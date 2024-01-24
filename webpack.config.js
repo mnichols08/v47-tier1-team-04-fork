@@ -32,7 +32,10 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             hash: true,
-            filename: '/index.html' //relative to root of the application
+            title: 'Daily Tasks App',
+            myPageHeader: 'Daily Tasks App',
+            template: './src/index.html',
+            filename: './dist/index.html' //relative to root of the application
         })
    ]
 };
