@@ -20,4 +20,4 @@ function clearFooter() {
 
 export const clearEle = (ele) => (ele.innerHTML = "");
 
-export default clearAnchor;
+export default clearMain;
