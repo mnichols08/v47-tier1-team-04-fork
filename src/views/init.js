@@ -1,6 +1,6 @@
 import clearMain, { main } from "../utils/docVars.js";
 import createEle from "../utils/createEle";
-import controller from "../controls/index.controller.js";
+import controller from "../controller/index.js";
 
 
 const init = () => {
