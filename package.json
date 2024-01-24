@@ -7,7 +7,10 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack",
+    "dev": "concurrently \"npm run watch\" \"npm start\" --kill-others-on-fail",
+    "start": "serve dist",
+    "watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
