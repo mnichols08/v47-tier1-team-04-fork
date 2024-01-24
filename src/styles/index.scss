@@ -1,3 +1,6 @@
-body {
-    background-color: #333;
-}
+// Base SCSS file to import all other stylesheets
+@import "utils/reset.css";
+@import "abstracts/variables";
+@import "base/typography";
+@import "components/elements";
+@import "pages/root";
