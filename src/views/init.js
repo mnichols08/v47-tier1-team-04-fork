@@ -69,10 +69,124 @@ const init = () => {
       <td>Italy</td>
     </tr>
   </table>
+  <section class="display-properties">
+	
+		<h2>Block Elements ( div )</h2>
+	
+    <div class="block">
+						<div class="box">1</div>
+						<div class="box">2</div>
+						<div class="box">3</div>
+						<div class="box">4</div>
+    </div>
+	
+		<h2>Inline Block Elements ('div.inline-block')</h2>
+	
+    <div class="inline-block">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+				<div class="box">6</div>
+				<div class="box">7</div>
+				<div class="box">8</div>
+				<div class="box">9</div>
+				<div class="box">10</div>
+				<div class="box">11</div>
+        <div class="box">12</div>
+        <div class="box">13</div>
+        <div class="box">14</div>
+        <div class="box">15</div>
+				<div class="box">16</div>
+				<div class="box">17</div>
+				<div class="box">18</div>
+				<div class="box">19</div>
+				<div class="box">20</div>
+			  <div class="box">21</div>
+    </div>
+	
+		<h2>Row-Reverse Flex Elements ('div.flex-reverse')</h2>
+	
+    <div class="flex-reverse">
+						<div class="box">1</div>
+						<div class="box">2</div>
+						<div class="box">3</div>
+						<div class="box">4</div>
+						<div class="box">5</div>
+						<div class="box">6</div>
+						<div class="box">7</div>
+						<div class="box">8</div>
+						<div class="box">9</div>
+						<div class="box">10</div>
+    </div>
+	
+	<h2>Flex Elements ('div.flex')</h2>
+	
+    <div class="flex">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+				<div class="box">6</div>
+				<div class="box">7</div>
+				<div class="box">8</div>
+				<div class="box">9</div>
+				<div class="box">10</div>				
+    </div>
+	
+	<h2>Two Column Flex Items ('div.flex-two-col')</h2>
+	
+    <div class="flex-two-col m-1">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+    </div>
+	
+		<h2>Three Column Flex Items ('div.flex-three-col')</h2>
+	
+	   <div class="flex-three-col">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+			 	<div class="box">6</div>
+    </div>
+	
+		<h2>Four Column Flex Items ('div.flex-four-col')</h2>
+	
+		   <div class="flex-four-col">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+				<div class="box">6</div>
+				<div class="box">7</div>
+				<div class="box">8</div>
+    </div>
+	
+			<h2>Five Column Flex Items ('div.flex-five-col')</h2>
+		   <div class="flex-five-col">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+				<div class="box">6</div>
+				<div class="box">7</div>
+				<div class="box">8</div>
+				<div class="box">9</div>
+				<div class="box">10</div>
+    </div>
+	
+</section>
     `,
     main
   );
-
 };
 
 export default init;
