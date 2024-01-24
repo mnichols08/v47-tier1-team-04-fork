@@ -1,8 +1,8 @@
 {
-  "name": "v47-tier1-team-04",
-  "version": "1.0.0",
-  "description": "A task app created by a group of individuals brought together by Chingu for a six-week \"Voyage\". A day2day task app.",
-  "main": "./public/index.html",
+  "name": "v47-tier1-team-04-fork",
+  "version": "0.0.1",
+  "description": "My implementation of the project intended for Tier 1 Groups as part of the \"Chingu Voyage\" program.",
+  "main": "./index.js",
   "directories": {
     "doc": "docs"
   },
@@ -31,7 +31,7 @@
     "css",
     "javascript"
   ],
-  "author": "Amanda Libbey, Jayanti Neu, Stacy Riley, Tasmine Wakil, Mikey Nichols, Will Burroughs, Emmett Pennington",
+  "author": "Mikey Nichols",
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/chingu-voyages/v47-tier1-team-04/issues"
