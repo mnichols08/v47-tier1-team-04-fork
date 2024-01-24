@@ -5,5 +5,4 @@ import INITIAL_DATA from "../models/tasks.model.json" assert { type: "json" };
 function controller() {
   return { getAllTasks: () => INITIAL_DATA };
 }
-console.log(controller().getAllTasks());
 export default controller;
