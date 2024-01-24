@@ -7,7 +7,7 @@ export const footer = document.querySelector("footer");
 export const clearHeader = () => (header.innerHTML = "");
 
 /* Function to empty the content of the main element */
-export const clearMain = () => (main.innerHTML = "");
+const clearMain = () => (main.innerHTML = "");
 
 /* Function to empty the content of the footer element */
 export const clearFooter = () => (footer.innerHTML = "");
