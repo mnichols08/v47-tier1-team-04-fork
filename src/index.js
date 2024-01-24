@@ -1,4 +1,4 @@
-import './styles/index.scss'; // declares stylesheets that rely on images we need to render on screen from within our server
+import './styles/index.scss'; // declares stylesheet
 
 // Imports JSON data from the "model"
 import INITIAL_DATA from './model/tasks.json' assert {type: 'json'};
