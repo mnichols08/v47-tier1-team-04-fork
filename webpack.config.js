@@ -35,7 +35,7 @@ module.exports = {
             title: 'Daily Tasks App',
             myPageHeader: 'Daily Tasks App',
             template: './src/index.html',
-            filename: './dist/index.html' //relative to root of the application
+            filename: './index.html' //relative to root of the application
         })
    ]
 };
