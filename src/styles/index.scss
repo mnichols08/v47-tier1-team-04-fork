@@ -1,5 +1,7 @@
 // Base SCSS file to import all other stylesheets
 @import "utils/reset.css";
+@import "utils/mini-flex-lib";
+
 @import "abstracts/variables";
 @import "base/typography";
 @import "components/elements";
