@@ -6,11 +6,26 @@ const init = () => {
   // run the clear function
   clearMain();
   // create a section element, fill in the section element with the HTML from index.html and append the section element to the anchor container
-  const tasks = createEle("ul", `<h1>All Tasks</h1>`, main);
-  tasks.class = "flex";
+  createEle("h1", `All Tasks`, main);
+
+  createEle(
+    "table",
+    `
+    <caption>All of the tasks that are currently due</caption>
+    <thead><tr><th>Name</th><th>Group</th><th>Category</th><th>Frequency</th></tr></thead>
+    <tbody></tbody>
+    <tfooter></tfooter>
+    `,
+    main
+  );
   controller()
     .getAllTasks()
-    .forEach((task) => createEle("li", task.name, tasks));
+    .forEach((task) => {
+      const taskRow = createEle("tr", task.name, document.querySelector('tbody'));
+      createEle("td", task.group, taskRow);
+      createEle("td", task.category, taskRow);
+      createEle("td", task.frequency, taskRow);
+    });
 };
 
 export default init;
