@@ -10,7 +10,7 @@ const init = () => {
   tasks.class = "flex";
   controller()
     .getAllTasks()
-    .forEach((task) => createEle("li", task.categoryName, tasks));
+    .forEach((task) => createEle("li", task.name, tasks));
 };
 
 export default init;
