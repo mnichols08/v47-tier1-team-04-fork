@@ -1,0 +1,76 @@
+body {
+  background-color: #333;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #1e1e1e;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #2d2d2d;
+}
+
+//   Table Borders
+// table, th, td {
+//     border: 1px solid black;
+//   }
+
+// Collapsed Table Borders
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+// Styled Table Borders
+// table, th, td {
+//     border: 1px solid white;
+//     border-collapse: collapse;
+//   }
+//   th, td {
+//     background-color: #96D4D4;
+//   }
+
+// Round Table Borders
+// table, th, td {
+//     border: 1px solid black;
+//     border-radius: 10px;
+//   }
+
+// Round Table Border without border around table
+// th, td {
+//     border: 1px solid black;
+//     border-radius: 10px;
+//   }
+
+// Dotted Table Borders
+// th,
+// td {
+//   border-style: dotted;
+// }
+// dotted
+// dashed
+// solid
+// double
+// groove
+// ridge
+// inset
+// outset
+// none
+// hidden
+
+// Border Color
+// th,
+// td {
+//   border-color: #96d4d4;
+// }
