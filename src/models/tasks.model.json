@@ -4,7 +4,7 @@
 	  "group": "ROUTINE ACTIVITIES",
 	  "category": "Projects",
 	  "frequency": "weekly",
-	  "sun": false,
+	  "days": {	  "sun": false,
 	  "mon": true,
 	  "tue": false,
 	  "wed": false,
@@ -24,7 +24,7 @@
 	  "2/3": false,
 	  "2/4": false,
 	  "2/5": false,
-	  "2/6": false
+	  "2/6": false}
 	},
 	{
 	  "name": "Update The dailyTasks sheet with the backlog tasks",

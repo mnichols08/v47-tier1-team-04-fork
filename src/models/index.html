@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const categories = [];
+      class Category {
+        constructor(name, tasks) {
+          this.name = name;
+          this.task = [...tasks];
+          categories.push(this)
+        }
+        updateName(val) {
+          this.name = val;
+          return this;
+        }
+        addTask(task) {
+          this.tasks.push(task);
+          return this;
+        }
+        removeTask(task) {
+          this = this.filter(item => item.Task !== task)
+          return this
+        }
+
+      }
+      const tasks = [];
+      class Task {
+        constructor(name, group, category, frequency, days, calander) {
+          this.name = name;
+          this.group = group;
+          this.category = category;
+          this.frequency = frequency;
+          this.days = days;
+          this.calander = calander;
+          this.complete = false;
+          tasks.push(this);
+        }
+        read() {
+          return this;
+        }
+        update(name, group, category, frequency, days, calander) {
+          this.name = name;
+          this.group = group;
+          this.category = category;
+          this.frequency = frequency;
+          this.days = days;
+          this.calander = calander;
+          this.complete = false;
+        }
+        updateName(val) {
+          this.name = val;
+          this.complete = false;
+          return this;
+        }
+        updateGroup(val) {
+          this.group = val;
+          this.complete = false;
+          return this;
+        }
+        updateCategory(val) {
+          this.category = val;
+          this.complete = false;
+          return this;
+        }
+        updateFrequency(val) {
+          this.frequency = val;
+          this.complete = false;
+          return this;
+        }
+        updateDays(val) {
+          this.days = val;
+          this.complete = false;
+          return this;
+        }
+        updateCalander(val) {
+          this.calander = val;
+          this.complete = false;
+          return this;
+        }
+        toggleComplete() {
+          this.complete = !this.complete;
+          return this.complete;
+        }
+      }
+
+      (async () =>
+        await fetch("./tasks.model.json")
+          .then((res) => res.json())
+          .then((data) => {
+            data.map((task) => {
+              const newTask = new Task(
+                task.name,
+                task.group,
+                task.category,
+                task.frequency,
+                task.days,
+                task.calander
+              );
+            });
+            const routineActivities = tasks.filter(
+              (task) => task.group === "ROUTINE ACTIVITIES"
+            );
+            const studying = tasks.filter((task) => task.group === "STUDYING");
+            const dailyTasksProject = tasks.filter(
+              (task) => task.group === "DAILY TASKS PROJECT"
+            );
+            const chingu = tasks.filter((task) => task.group === "CHINGU");
+          }))();
+    </script>
+  </body>
+</html>
