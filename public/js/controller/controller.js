@@ -4,8 +4,8 @@ import { resetIndex } from "../utils/utils.js";
 // declares controller class
 export default class Controller {
   constructor() {}
-  init(title){
-    app.view.init(title)
+  init(title) {
+    app.view.init(title);
   }
   // Method to clear/reset tasks:
   resetState() {
@@ -65,18 +65,19 @@ export default class Controller {
     return [...new Set(categories.map((task) => task.category))];
   }
   createTask(name, group, category, frequency, days, calendar) {
-    return new Task(name, group, category, frequency, days, calendar);
+    const newTask = new Task(name, group, category, frequency, days, calendar);
+
   }
   readAllTasks() {
     return app.tasks;
   }
   readTask(id) {
     const task = app.tasks.filter((task) => task.id === `task_${id}`)[0];
+
     return task.read();
   }
   updateTask(id, [...args]) {
     return this.readTask(id).update(...args);
   }
   // method to delete task by ID by using the .delete method on the
-  
 }
