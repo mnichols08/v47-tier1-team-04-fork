@@ -9,9 +9,9 @@ export default class Controller {
   }
   // Method to clear/reset tasks:
   resetState() {
-    this.tasks = [];
+    app.tasks = [];
     resetIndex();
-    return this;
+    return app;
   }
   // Method to pull in the data from the data.model.json file:
   async seed() {
