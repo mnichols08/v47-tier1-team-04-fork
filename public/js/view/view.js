@@ -28,7 +28,7 @@ export default class View {
   createView(ele, content, anchor, id, classList) {
     const newView = new View(ele, content, anchor, id, classList);
     app.views.push(newView);
-    return;
+    return this;
   }
   // collection of functions to initialize the view of the application
   init(title) {
@@ -179,7 +179,7 @@ export default class View {
  
   }
   renderFooter() {
-    this.createView(
+    return this.createView(
       "footer",
       `
       <div class="footer-left">
