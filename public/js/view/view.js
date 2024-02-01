@@ -32,15 +32,14 @@ export default class View {
   }
   // collection of functions to initialize the view of the application
   init(title) {
-    this.renderAside(title);
-    this.renderNavbar();
-    this.renderContent();
-    this.renderFooter();
+    this.renderAsideGroups(title);
+    // this.renderNavbar();
+    // this.renderContent();
+    // this.renderFooter();
     return this;
   }
-  // a method which takes a title as an argument and creates a new view from html created by emmett only dynamically creating the title
   renderAside(title) {
-    const aside = this.createView(
+    return this.createView(
       "aside",
       `<div class="avatar-area">
           <div class="avatar">
@@ -61,32 +60,41 @@ export default class View {
       "aside-el",
       "aside"
     );
+  }
+  renderAsideGroup(group) {
+    this.createView(
+      "div",
+      `
+          <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
+            <ul id="sidebar_${kebabCase(group)}">
+            </ul>
+          `,
+      document.getElementById("daily-checklist"),
+      null,
+      "activity"
+    );
+  }
+
+  // a method which takes a title as an argument and creates a new view from html created by emmett only dynamically creating the title
+  renderAsideGroups(title) {
+    let aside = this.renderAside(title);
     // after rendering some mostly static html, it calls the returnUniqueGroupNames function and then loops over those values to create additional views for each `group`
     app.controller.returnUniqueGroupNames().map((group) => {
-      app.view.createView(
-        "div",
-        `
-            <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
-              <ul id="sidebar_${kebabCase(group)}">
-              </ul>
-            `,
-        document.getElementById("daily-checklist"),
-        null,
-        "activity"
-      );
-      // once the groups have been created, the returnUniqueCategoiesByGroup is called, dynamically passing in the `group` that is available to this entire loop wea are currently within
+      this.renderAsideGroup(group);
       app.controller
         .returnUniqueCategoriesByGroup(group)
-        .map((category) =>
-          app.view.createView(
-            "li",
-            category,
-            document.getElementById(`sidebar_${kebabCase(group)}`)
-          )
-        );
+        .map((category) => this.renderAsideCategory(category, group));
     });
     // this returns each object within a group providing us access to more data than just the returnGroupNames() gives. so now we can create a new view on each group for each unique category we have
+
     return aside;
+  }
+  renderAsideCategory(category, group) {
+    app.view.createView(
+      "li",
+      category,
+      document.getElementById(`sidebar_${kebabCase(group)}`)
+    );
   }
   // method to generate static html as found within Emmets html file
   renderNavbar() {
@@ -174,9 +182,6 @@ export default class View {
         this.renderCategory(category, group);
       });
     });
-  }
-  renderCategory(category, group) {
- 
   }
   renderFooter() {
     return this.createView(
