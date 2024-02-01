@@ -173,26 +173,34 @@ export default class View {
       "content-activity"
     );
   }
-  renderCategory(group) {
+  renderCategory(group, category) {
+    const id = `content_${kebabCase(group)}`;
     this.createView(
       "div",
       `
           <div class="content-main">
-          <img src="./img/Ellipse8.svg" alt=" ellipse checkbox" class="ellipse">
-          <div class="content-inner">
-          </div>
+            <img src="./img/Ellipse8.svg" alt=" ellipse checkbox" class="ellipse">
+            <div class="content-inner">
+              <div class="content-task">
+                <h3 class="activity" id="activity-title-1-1">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
+              </div>
+            </div>
           </div>
           `,
-      document.getElementById(`content_${kebabCase(group)}`)
+      document.getElementById(id)
     );
-
+    this.createView(
+      "div",
+      category,
+      document.querySelector(`#${id} .content-inner`, null, "content-description")
+    );
   }
   renderGroups() {
     app.controller.returnUniqueGroupNames().map((group) => {
       this.renderGroup(group);
       app.controller
         .returnUniqueCategoriesByGroup(group)
-        .map((category) => this.renderCategory(group));
+        .map((category) => this.renderCategory(group, category));
     });
   }
   renderFooter() {

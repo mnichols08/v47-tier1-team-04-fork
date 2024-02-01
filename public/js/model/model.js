@@ -5,7 +5,7 @@ import View from "../view/view.js";
 export class Model {
   constructor() {
     this.controller = new Controller(); // creates a controller object on the app
-    this.view = new View("div", ``, document.body, "app", "container"); // initializes a new view, appending it to the document.body as on the view property of the application
+    this.view = new View("div", `<!-- Code Injected By JavaScript Model View Controller -->`, document.body, "app", "container"); // initializes a new view, appending it to the document.body as on the view property of the application
     this.tasks = []; // declares empty array to store tasks in
     this.views = []; // declares empty array to store views in
   }
