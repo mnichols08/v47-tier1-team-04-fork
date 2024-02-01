@@ -196,17 +196,18 @@ export default class View {
     );
   }
   renderTask(task) {
-    console.log(document.querySelector(`#category_${kebabCase(task.category)}`),
-      document.querySelector(
-        `#category_${kebabCase(task.category)} .content-description`
-      )
+    const anchor = document.querySelector(
+      `#category_${kebabCase(task.category)} .content-description`
     );
+    this.createView("p", task.name, anchor);
     this.createView(
-      "p",
-      task.name,
-      document.querySelector(
-        `#category_${kebabCase(task.category)} .content-description`
-      )
+      "div",
+      `
+    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
+    `,
+      anchor,
+      "content-description-edit"
     );
   }
   renderTasks() {
