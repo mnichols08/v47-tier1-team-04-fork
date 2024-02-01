@@ -1,5 +1,5 @@
-import Task from "../model/task/task.js";
-import app from "../model/model.js";
+import Task from "./task.js";
+import app from "./model.js";
 import { resetIndex } from "./utils.js";
 // declares controller class
 export default class Controller {
@@ -14,7 +14,7 @@ export default class Controller {
   }
   // Method to pull in the data from the data.model.json file:
   async seed() {
-    return await fetch("./js/model/data.model.json")
+    return await fetch("./js/data/data.json")
       .then((res) => res.json())
       .then((data) =>
         data.map(
