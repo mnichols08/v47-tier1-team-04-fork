@@ -3,7 +3,6 @@ import app from "../model/model.js";
 import { resetIndex } from "../utils/utils.js";
 // declares controller class
 export default class Controller {
-  constructor() {}
   init(title) {
     app.view.init(title);
   }
