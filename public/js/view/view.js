@@ -33,9 +33,17 @@ export default class View {
   // collection of functions to initialize the view of the application
   init(title) {
     this.renderAsideGroups(title);
-    // this.renderNavbar();
-    // this.renderContent();
-    // this.renderFooter();
+    this.renderNavbar();
+    this.renderContent();
+    this.renderGroups();
+    this.renderFooter();
+    return this;
+  }
+  updateView() {
+    this.renderNavbar();
+    this.renderContent();
+    this.renderGroups();
+    this.renderFooter();
     return this;
   }
   renderAside(title) {
@@ -132,7 +140,7 @@ export default class View {
   }
   // generates the content element currently a static representation
   renderContent() {
-    const content = this.createView(
+    return this.createView(
       "content",
       `<div class="content-search">
         <div class="priority">
@@ -153,34 +161,38 @@ export default class View {
       "content",
       "content"
     );
-    this.renderGroups();
   }
-  renderGroups() {
-    app.controller.returnUniqueGroupNames().map((group) => {
-      const content = this.createView(
-        "div",
-        `
-        <h2 class="category-name">${group}</h2>
-        `,
-        document.getElementById("content"),
-        `content_${kebabCase(group)}`,
-        "content-activity"
-      );
-      app.controller.returnUniqueCategoriesByGroup(group).map((category) => {
-        this.createView(
-          "div",
-          `
+  renderGroup(group) {
+    return this.createView(
+      "div",
+      `
+          <h2 class="category-name">${group}</h2>
+          `,
+      document.getElementById("content"),
+      `content_${kebabCase(group)}`,
+      "content-activity"
+    );
+  }
+  renderCategory(group) {
+    this.createView(
+      "div",
+      `
           <div class="content-main">
           <img src="./img/Ellipse8.svg" alt=" ellipse checkbox" class="ellipse">
           <div class="content-inner">
-          
           </div>
           </div>
           `,
-          document.getElementById(`content_${kebabCase(group)}`)
-        );
-        this.renderCategory(category, group);
-      });
+      document.getElementById(`content_${kebabCase(group)}`)
+    );
+
+  }
+  renderGroups() {
+    app.controller.returnUniqueGroupNames().map((group) => {
+      this.renderGroup(group);
+      app.controller
+        .returnUniqueCategoriesByGroup(group)
+        .map((category) => this.renderCategory(group));
     });
   }
   renderFooter() {
