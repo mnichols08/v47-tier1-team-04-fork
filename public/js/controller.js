@@ -30,7 +30,7 @@ export default class Controller {
         )
       );
   }
-  // finds the unique groups within tasks then returns a filtered array with only the tasks within that gr
+  // finds the unique groups within tasks then returns a filtered array with only the tasks within that group
   returnUniqueGroupTasks() {
     return this.returnUniqueGroupNames().map((group) =>
       this.returnByGroup(group)
