@@ -1,4 +1,4 @@
-import Controller from "../controller/controller.js";
+import Controller from "./controller/controller.js";
 import View from "../view/view.js";
 
 // declares a Model, for our app to be built from. This is not a true constructor as we will only use this once to create one instance of this object, the "app"

@@ -1,6 +1,6 @@
 import Task from "../model/task/task.js";
 import app from "../model/model.js";
-import { resetIndex } from "../utils/utils.js";
+import { resetIndex } from "./utils.js";
 // declares controller class
 export default class Controller {
   init(title) {
