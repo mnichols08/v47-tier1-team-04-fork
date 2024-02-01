@@ -42,8 +42,11 @@
       href="./favicon-16x16.png"
     />
     <link rel="manifest" href="./site.webmanifest" />
-    <script src="./js/app.js" type="module" defer></script>
+    <script type="module" defer>
+      import app from "./model/model.js";
+      /* *********************************APP INITIALIZATION****************************** */
+      app.init("Daily Task App"); // Initialize application with a title of Daily Task App
+    </script>
   </head>
-  <body>
-  </body>
+  <body></body>
 </html>
