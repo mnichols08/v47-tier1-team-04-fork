@@ -36,6 +36,7 @@ export default class View {
     this.renderNavbar();
     this.renderContent();
     this.renderGroups();
+    this.renderTasks();
     this.renderFooter();
     return this;
   }
@@ -182,25 +183,41 @@ export default class View {
             <img src="./img/Ellipse8.svg" alt=" ellipse checkbox" class="ellipse">
             <div class="content-inner">
               <div class="content-task">
-                <h3 class="activity" id="activity-title-1-1">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
+                <h3 class="activity">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
+              </div>
+              <div class="content-description">
+                                      
               </div>
             </div>
           </div>
           `,
-      document.getElementById(id)
+      document.getElementById(id),
+      `category_${kebabCase(category)}`
+    );
+  }
+  renderTask(task) {
+    console.log(document.querySelector(`#category_${kebabCase(task.category)}`),
+      document.querySelector(
+        `#category_${kebabCase(task.category)} .content-description`
+      )
     );
     this.createView(
-      "div",
-      category,
-      document.querySelector(`#${id} .content-inner`, null, "content-description")
+      "p",
+      task.name,
+      document.querySelector(
+        `#category_${kebabCase(task.category)} .content-description`
+      )
     );
+  }
+  renderTasks() {
+    app.controller.readAllTasks().map((task) => this.renderTask(task));
   }
   renderGroups() {
     app.controller.returnUniqueGroupNames().map((group) => {
       this.renderGroup(group);
-      app.controller
-        .returnUniqueCategoriesByGroup(group)
-        .map((category) => this.renderCategory(group, category));
+      app.controller.returnUniqueCategoriesByGroup(group).map((category) => {
+        this.renderCategory(group, category);
+      });
     });
   }
   renderFooter() {
