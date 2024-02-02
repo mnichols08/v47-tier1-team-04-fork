@@ -5,7 +5,7 @@ import renderAsideCategory from "./renderAsideCategory.js";
 // a method which takes a title as an argument and creates a new view from html created by emmett only dynamically creating the title
 export default function renderAsideGroups(title) {
   renderAside(title);
-  // after rendering some mostly static html, it calls the returnUniqueGroupNames function and then loops over those values to create additional views for each `group`
+ 
   app.controller.returnUniqueGroupNames().map((group) => {
     renderAsideGroup(group);
     app.controller

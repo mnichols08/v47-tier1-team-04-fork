@@ -21,4 +21,5 @@ const renderAside = (title) =>
     "aside-el",
     "aside"
   );
+   // after rendering some mostly static html, it calls the returnUniqueGroupNames function and then loops over those values to create additional views for each `group`
   export default renderAside;

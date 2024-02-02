@@ -1,5 +1,6 @@
 import app from "../app.js";
 import renderAsideGroups from "./renderAside/renderAsideGroups.js";
+import renderNavbar from "./renderNavbar.js";
 import { kebabCase } from "../utils/utils.js";
 let i = 1; // sets view index to 1;
 // declares a constructor class for creating new Views within the document (primarily use the method createView for this)
@@ -34,64 +35,22 @@ export default class View {
   // collection of functions to initialize the view of the application
   init(title) {
     renderAsideGroups(title);
-    this.renderNavbar();
+    renderNavbar();
     this.renderContent();
     this.renderGroups();
     this.renderTasks();
     this.renderFooter();
     return this;
   }
-  updateView() {
-    this.renderNavbar();
+  updateView(title) {
+    renderAsideGroups(title);
+    renderNavbar();
     this.renderContent();
     this.renderGroups();
     this.renderFooter();
     return this;
   }
 
-
-
-  renderAsideCategory(category, group) {
-    app.view.createView(
-      "li",
-      category,
-      document.getElementById(`sidebar_${kebabCase(group)}`)
-    );
-  }
-  // method to generate static html as found within Emmets html file
-  renderNavbar() {
-    const today = new Date();
-    const formattedDate = `${
-      today.getMonth() + 1
-    }/${today.getDate()}/${today.getFullYear()}`;
-    return this.createView(
-      "nav",
-      `
-      <div class="navbar-top">
-          <i class="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
-          <div id="date" class="date">Today: ${formattedDate}</div>
-          <div class="btn-undo">
-            <button class="btn undo">
-              <img src="./img/ci_undo.svg" alt="undo button" />
-              undo
-            </button>
-            <button class="btn undo">
-              <img src="./img/ci_redo.svg" alt="redo button" />
-              undo
-            </button>
-            <a href="#" class="btn btn-save">Save</a>
-          </div>
-        </div>
-        <div class="navbtn">
-          <a href="#" class="btn-day">Today</a>
-          <a href="#" class="btn-month">Month</a>
-          <a href="#" class="btn-year">Year</a>
-        </div>`,
-      document.getElementById("app"),
-      "navbar",
-      "navbar"
-    );
-  }
   // generates the content element currently a static representation
   renderContent() {
     return this.createView(
