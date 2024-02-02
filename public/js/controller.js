@@ -1,6 +1,6 @@
-import Task from "./task.js";
+import Task from "./utils/task.js";
 import app from "./app.js";
-import { resetIndex } from "./utils.js";
+import { resetIndex } from "./utils/utils.js";
 // declares controller class
 export default class Controller {
   async init(title) {
