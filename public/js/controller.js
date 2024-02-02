@@ -1,21 +1,34 @@
-import Task from "../model/task/task.js";
-import app from "../model/model.js";
-import { resetIndex } from "../utils/utils.js";
+import Task from "./utils/task.js";
+import app from "./app.js";
+import { resetIndex } from "./utils/utils.js";
 // declares controller class
 export default class Controller {
-  constructor() {}
-  init(title){
-    app.view.init(title)
+  async init(title) {
+    //this.resetState();
+    await this.load();
+    app.view.init(title);
   }
-  // Method to clear/reset tasks:
-  resetState() {
-    this.tasks = [];
-    resetIndex();
-    return this;
+  async load() {
+    localStorage.tasks
+      ? JSON.parse(localStorage.getItem("tasks")).map(
+          (task) =>
+            new Task(
+              task.name,
+              task.group,
+              task.category,
+              task.frequency,
+              task.days,
+              task.calendar
+            )
+        )
+      : await this.seed();
+  }
+  save() {
+    localStorage.setItem("tasks", JSON.stringify(app.tasks));
   }
   // Method to pull in the data from the data.model.json file:
   async seed() {
-    return await fetch("./js/model/data.model.json")
+    const seed = await fetch("./js/data/data.json")
       .then((res) => res.json())
       .then((data) =>
         data.map(
@@ -30,8 +43,16 @@ export default class Controller {
             )
         )
       );
+    this.save();
+    return seed;
   }
-  // finds the unique groups within tasks then returns a filtered array with only the tasks within that gr
+  // Method to clear/reset tasks:
+  resetState() {
+    app.tasks = [];
+    resetIndex();
+    return app;
+  }
+  // finds the unique groups within tasks then returns a filtered array with only the tasks within that group
   returnUniqueGroupTasks() {
     return this.returnUniqueGroupNames().map((group) =>
       this.returnByGroup(group)
@@ -65,18 +86,18 @@ export default class Controller {
     return [...new Set(categories.map((task) => task.category))];
   }
   createTask(name, group, category, frequency, days, calendar) {
-    return new Task(name, group, category, frequency, days, calendar);
+    const newTask = new Task(name, group, category, frequency, days, calendar);
   }
   readAllTasks() {
     return app.tasks;
   }
   readTask(id) {
     const task = app.tasks.filter((task) => task.id === `task_${id}`)[0];
+
     return task.read();
   }
   updateTask(id, [...args]) {
     return this.readTask(id).update(...args);
   }
   // method to delete task by ID by using the .delete method on the
-  
 }
