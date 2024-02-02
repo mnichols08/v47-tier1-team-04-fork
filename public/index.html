@@ -46,7 +46,11 @@
       import app from "./js/model.js";
       /* *********************************APP INITIALIZATION****************************** */
       app.init("Daily Task App"); // Initialize application with a title of Daily Task App
-      (async () => console.log(await app))()
+      (async (app) => {
+       
+//        console.log(await app.tasks.filter(task => task.category === 'Physical Exercise').map(t => console.log(t)))
+
+      })();
     </script>
   </head>
   <body></body>

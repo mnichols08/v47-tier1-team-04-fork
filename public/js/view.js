@@ -1,4 +1,4 @@
-import app from "./model.js";
+import app from "./app.js";
 import { kebabCase } from "./utils.js";
 let i = 1; // sets view index to 1;
 // declares a constructor class for creating new Views within the document (primarily use the method createView for this)

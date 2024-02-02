@@ -1,27 +1,26 @@
 import Task from "./task.js";
-import app from "./model.js";
+import app from "./app.js";
 import { resetIndex } from "./utils.js";
 // declares controller class
 export default class Controller {
   async init(title) {
-    this.resetState();
+    //this.resetState();
     await this.load();
     app.view.init(title);
   }
   async load() {
-    localStorage.tasks ? console.log("tasks") : console.log("seed");
     localStorage.tasks
-      ? JSON.parse(localStorage.getItem("tasks")).map((task) => {
-        console.log(task)  
-        new Task(
-            task.name,
-            task.group,
-            task.category,
-            task.frequency,
-            task.days,
-            task.calendar
-          );
-        })
+      ? JSON.parse(localStorage.getItem("tasks")).map(
+          (task) =>
+            new Task(
+              task.name,
+              task.group,
+              task.category,
+              task.frequency,
+              task.days,
+              task.calendar
+            )
+        )
       : await this.seed();
   }
   save() {

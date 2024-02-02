@@ -2,7 +2,7 @@ import Controller from "./controller.js";
 import View from "./view.js";
 
 // declares a Model, for our app to be built from. This is not a true constructor as we will only use this once to create one instance of this object, the "app"
-export class Model {
+class App {
   constructor() {
     this.controller = new Controller(); // creates a controller object on the app
     this.view = new View("div", `<!-- Code Injected By JavaScript Model View Controller -->`, document.body, "app", "container"); // initializes a new view, appending it to the document.body as on the view property of the application
@@ -18,5 +18,5 @@ export class Model {
   }
 }
 // declares app app as a new instance of this new class
-const app = new Model();
+const app = new App();
 export default app;
