@@ -3,18 +3,33 @@ import app from "./model.js";
 import { resetIndex } from "./utils.js";
 // declares controller class
 export default class Controller {
-  init(title) {
+  async init(title) {
+    this.resetState();
+    await this.load();
     app.view.init(title);
   }
-  // Method to clear/reset tasks:
-  resetState() {
-    app.tasks = [];
-    resetIndex();
-    return app;
+  async load() {
+    localStorage.tasks ? console.log("tasks") : console.log("seed");
+    localStorage.tasks
+      ? JSON.parse(localStorage.getItem("tasks")).map((task) => {
+        console.log(task)  
+        new Task(
+            task.name,
+            task.group,
+            task.category,
+            task.frequency,
+            task.days,
+            task.calendar
+          );
+        })
+      : await this.seed();
+  }
+  save() {
+    localStorage.setItem("tasks", JSON.stringify(app.tasks));
   }
   // Method to pull in the data from the data.model.json file:
   async seed() {
-    return await fetch("./js/data/data.json")
+    const seed = await fetch("./js/data/data.json")
       .then((res) => res.json())
       .then((data) =>
         data.map(
@@ -29,6 +44,14 @@ export default class Controller {
             )
         )
       );
+    this.save();
+    return seed;
+  }
+  // Method to clear/reset tasks:
+  resetState() {
+    app.tasks = [];
+    resetIndex();
+    return app;
   }
   // finds the unique groups within tasks then returns a filtered array with only the tasks within that group
   returnUniqueGroupTasks() {
@@ -65,7 +88,6 @@ export default class Controller {
   }
   createTask(name, group, category, frequency, days, calendar) {
     const newTask = new Task(name, group, category, frequency, days, calendar);
-
   }
   readAllTasks() {
     return app.tasks;

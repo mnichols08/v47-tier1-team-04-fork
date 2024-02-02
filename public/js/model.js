@@ -12,7 +12,7 @@ export class Model {
   // Method to initialize app
   async init(title) {
     this.controller.resetState(); // calls controller.resetState to clear out tasks
-    await this.controller.seed(); // awaits json fetch / seed of db
+//await this.controller.seed(); // awaits json fetch / seed of db
     this.controller.init(title); // calls the controller.init function, passing in the title given within app.js
     return this;
   }
