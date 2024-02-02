@@ -1,4 +1,5 @@
 import app from "../app.js";
+import renderAsideGroups from "./renderAside/renderAsideGroups.js";
 import { kebabCase } from "../utils/utils.js";
 let i = 1; // sets view index to 1;
 // declares a constructor class for creating new Views within the document (primarily use the method createView for this)
@@ -32,7 +33,7 @@ export default class View {
   }
   // collection of functions to initialize the view of the application
   init(title) {
-    this.renderAsideGroups(title);
+    renderAsideGroups(title);
     this.renderNavbar();
     this.renderContent();
     this.renderGroups();
@@ -47,57 +48,9 @@ export default class View {
     this.renderFooter();
     return this;
   }
-  renderAside(title) {
-    return this.createView(
-      "aside",
-      `<div class="avatar-area">
-          <div class="avatar">
-            <img
-              src="./img/Friendly Ones Avatar and Backdrop.png"
-              alt="avatar pict"
-            />
-          </div>
-          <div class="gear-icon">
-            <img src="./img/solar_settings-linear.svg" alt="gear icon" />
-          </div>
-        </div>
-        <h2>${title}</h2>
-        <div id="daily-checklist">
-        </div>
-        </div>`,
-      app.view.element,
-      "aside-el",
-      "aside"
-    );
-  }
-  renderAsideGroup(group) {
-    this.createView(
-      "div",
-      `
-          <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
-            <ul id="sidebar_${kebabCase(group)}">
-            </ul>
-          `,
-      document.getElementById("daily-checklist"),
-      null,
-      "activity"
-    );
-  }
 
-  // a method which takes a title as an argument and creates a new view from html created by emmett only dynamically creating the title
-  renderAsideGroups(title) {
-    let aside = this.renderAside(title);
-    // after rendering some mostly static html, it calls the returnUniqueGroupNames function and then loops over those values to create additional views for each `group`
-    app.controller.returnUniqueGroupNames().map((group) => {
-      this.renderAsideGroup(group);
-      app.controller
-        .returnUniqueCategoriesByGroup(group)
-        .map((category) => this.renderAsideCategory(category, group));
-    });
-    // this returns each object within a group providing us access to more data than just the returnGroupNames() gives. so now we can create a new view on each group for each unique category we have
 
-    return aside;
-  }
+
   renderAsideCategory(category, group) {
     app.view.createView(
       "li",
