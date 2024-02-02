@@ -1,6 +1,10 @@
 import app from "../app.js";
 import renderAsideGroups from "./renderAside/renderAsideGroups.js";
 import renderNavbar from "./renderNavbar.js";
+import renderContent from "./content/renderContent.js";
+import renderGroups from "./content/renderGroups.js";
+import renderTasks from "./content/renderTasks.js"
+import renderFooter from "./renderFooter.js"
 import { kebabCase } from "../utils/utils.js";
 let i = 1; // sets view index to 1;
 // declares a constructor class for creating new Views within the document (primarily use the method createView for this)
@@ -36,119 +40,23 @@ export default class View {
   init(title) {
     renderAsideGroups(title);
     renderNavbar();
-    this.renderContent();
-    this.renderGroups();
-    this.renderTasks();
-    this.renderFooter();
+    renderContent();
+    renderGroups();
+    renderTasks();
+    renderFooter();
     return this;
   }
   updateView(title) {
     renderAsideGroups(title);
     renderNavbar();
-    this.renderContent();
-    this.renderGroups();
-    this.renderFooter();
+    renderContent();
+    renderGroups();
+    renderTasks();
+    renderFooter();
     return this;
   }
 
-  // generates the content element currently a static representation
-  renderContent() {
-    return this.createView(
-      "content",
-      `<div class="content-search">
-        <div class="priority">
-            <a href="#" class="btn btn-lite btn-blue">Low</a>
-            <a href="#" class="btn btn-lite btn-orange">Med</a>
-            <a href="#" class="btn btn-lite btn-red">High</a>
-            <div class="search">
-                <input type="text" placeholder="">
-                <i class="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
-            </div>
-        </div>               
-    </div>
 
-    </div>
-    
-`,
-      app.view.element,
-      "content",
-      "content"
-    );
-  }
-  renderGroup(group) {
-    return this.createView(
-      "div",
-      `
-          <h2 class="category-name">${group}</h2>
-          `,
-      document.getElementById("content"),
-      `content_${kebabCase(group)}`,
-      "content-activity"
-    );
-  }
-  renderCategory(group, category) {
-    const id = `content_${kebabCase(group)}`;
-    this.createView(
-      "div",
-      `
-          <div class="content-main">
-            <img src="./img/Ellipse8.svg" alt=" ellipse checkbox" class="ellipse">
-            <div class="content-inner">
-              <div class="content-task">
-                <h3 class="activity">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
-              </div>
-              <div class="content-description">
-                                      
-              </div>
-            </div>
-          </div>
-          `,
-      document.getElementById(id),
-      `category_${kebabCase(category)}`
-    );
-  }
-  renderTask(task) {
-    const anchor = document.querySelector(
-      `#category_${kebabCase(task.category)} .content-description`
-    );
-    this.createView("p", task.name, anchor);
-    this.createView(
-      "div",
-      `
-    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
-    `,
-      anchor,
-      "content-description-edit"
-    );
-  }
-  renderTasks() {
-    app.controller.readAllTasks().map((task) => this.renderTask(task));
-  }
-  renderGroups() {
-    app.controller.returnUniqueGroupNames().map((group) => {
-      this.renderGroup(group);
-      app.controller.returnUniqueCategoriesByGroup(group).map((category) => {
-        this.renderCategory(group, category);
-      });
-    });
-  }
-  renderFooter() {
-    return this.createView(
-      "footer",
-      `
-      <div class="footer-left">
-        <a href="https://github.com/chingu-voyages/v47-tier1-team-04">
-          <p class="copyright">© Chingu Team 04 Github</p>
-        </a>
-      </div>
-      
-      <a href="https://www.chingu.io" class="footer-right">          
-          <p class="copyright">Chingu</p>
-          <img class="chingu-logo" src="./img/chingo-logo.png">
-      </a>            
-    `,
-      app.view.element
-    );
-  }
+
+
 }
